@@ -1,5 +1,23 @@
 # dnf packages installed by install.sh (one per line, # for comments)
 
+# Desktop (niri session)
+niri
+xwayland-satellite
+waybar
+fuzzel
+mako
+swaybg
+swaylock
+swayidle
+clipman
+mate-polkit
+xdg-desktop-portal-gnome
+xdg-desktop-portal-gtk
+gnome-keyring
+brightnessctl
+pamixer
+playerctl
+
 # Shell + terminal
 zsh
 kitty
@@ -12,6 +30,7 @@ git-delta
 lazygit
 
 # CLI tools
+yazi
 ripgrep
 fd-find
 fzf

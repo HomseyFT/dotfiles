@@ -87,26 +87,13 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
-  -- colorscheme (sunset neon vibes)
+  -- colorscheme
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "rebelot/kanagawa.nvim",
     priority = 1000,
     config = function()
-      require("catppuccin").setup({
-        flavour = "mocha",
-        term_colors = true,
-        integrations = {
-          treesitter = true,
-          cmp = true,
-          nvimtree = true,
-          telescope = { enabled = true },
-          native_lsp = {
-            enabled = true,
-          },
-        },
-      })
-      vim.cmd.colorscheme("catppuccin")
+      require("kanagawa").setup({ theme = "wave" })
+      vim.cmd.colorscheme("kanagawa")
     end,
   },
 

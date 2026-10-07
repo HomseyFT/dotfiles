@@ -1,0 +1,29 @@
+# Kanagawa Wave
+image=~/.local/share/backgrounds/great-wave.jpg
+scaling=fill
+color=1F1F28
+font=JetBrainsMono Nerd Font
+ignore-empty-password
+show-failed-attempts
+indicator-radius=90
+indicator-thickness=8
+
+inside-color=1F1F28
+inside-clear-color=1F1F28
+inside-ver-color=1F1F28
+inside-wrong-color=1F1F28
+ring-color=7E9CD8
+ring-clear-color=98BB6C
+ring-ver-color=957FB8
+ring-wrong-color=E46876
+key-hl-color=957FB8
+bs-hl-color=E46876
+line-color=00000000
+line-clear-color=00000000
+line-ver-color=00000000
+line-wrong-color=00000000
+separator-color=00000000
+text-color=DCD7BA
+text-clear-color=98BB6C
+text-ver-color=957FB8
+text-wrong-color=E46876

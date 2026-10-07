@@ -1,0 +1,215 @@
+// ╔══════════════════════════════════════════════════╗
+// ║                Niri Configuration                ║
+// ╚══════════════════════════════════════════════════╝
+// Wiki: https://github.com/YaLTeR/niri/wiki
+// Check for errors after editing: niri validate
+//
+// Kanagawa Wave palette used below:
+//   bg #1F1F28  surface #2A2A37  overlay #54546D  fg #DCD7BA
+//   blue #7E9CD8  violet #957FB8  red #E46876  crust #16161D
+
+// ── Input ─────────────────────────────────────────
+input {
+    keyboard {
+        xkb {
+            layout "us"
+        }
+        numlock
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+    // Don't let hovering a half-visible column scroll the view
+    focus-follows-mouse max-scroll-amount="0%"
+}
+
+// ── Monitor ───────────────────────────────────────
+output "eDP-1" {
+    scale 1
+}
+
+// ── Layout ────────────────────────────────────────
+layout {
+    gaps 8
+    center-focused-column "never"
+
+    // New windows open full width; Mod+R cycles through these
+    default-column-width { proportion 1.0; }
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 1.0
+    }
+
+    focus-ring {
+        width 2
+        active-gradient from="#7E9CD8" to="#957FB8" angle=45
+        inactive-color "#2A2A37"
+    }
+
+    border {
+        off
+    }
+
+    shadow {
+        on
+        softness 20
+        spread 2
+        offset x=0 y=4
+        color "#00000060"
+    }
+
+    tab-indicator {
+        width 4
+        gap 4
+        corner-radius 4
+        active-color "#7E9CD8"
+        inactive-color "#54546D"
+        urgent-color "#E46876"
+    }
+}
+
+overview {
+    backdrop-color "#16161D"
+}
+
+// ── Autostart ─────────────────────────────────────
+spawn-at-startup "waybar"
+spawn-at-startup "mako"
+spawn-at-startup "swayidle" "-w"
+spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "clipman" "store"
+spawn-sh-at-startup "swaybg -m fill -i ~/.local/share/backgrounds/great-wave.jpg"
+
+// ── Misc ──────────────────────────────────────────
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+cursor {
+    xcursor-size 24
+}
+
+environment {
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
+}
+
+// ── Window Rules ──────────────────────────────────
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id=r#"pavucontrol$"#
+    match app-id=r#"^nm-connection-editor$"#
+    match app-id=r#"blueman-manager"#
+    match title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// ══════════════════════════════════════════════════
+//                    KEYBINDS
+// ══════════════════════════════════════════════════
+// Mod+Shift+/ shows all of these on screen.
+// Mod + left/right mouse drag moves/resizes windows (built in).
+
+binds {
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // ── Apps ──────────────────────────────────────
+    Mod+Return hotkey-overlay-title="Terminal" { spawn "kitty"; }
+    Mod+D hotkey-overlay-title="App launcher" { spawn "fuzzel"; }
+    Mod+E hotkey-overlay-title="File manager" { spawn "kitty" "yazi"; }
+    Mod+B hotkey-overlay-title="Browser" { spawn "firefox"; }
+    Mod+Shift+V hotkey-overlay-title="Clipboard history" { spawn-sh "clipman pick --tool=CUSTOM --tool-args='fuzzel --dmenu'"; }
+    Mod+Escape hotkey-overlay-title="Lock screen" { spawn "swaylock"; }
+
+    // ── Window management ─────────────────────────
+    Mod+Q repeat=false { close-window; }
+    Mod+Shift+Q { quit; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+V { toggle-window-floating; }
+    Mod+Alt+V { switch-focus-between-floating-and-tiling; }
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { switch-preset-column-width-back; }
+    Mod+S { toggle-column-tabbed-display; }
+    Mod+BracketLeft { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+C { center-column; }
+    Mod+O repeat=false { toggle-overview; }
+
+    // ── Focus (vim-style) ─────────────────────────
+    // J/K move within a column, then on to the next workspace at the edge
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+    Mod+J { focus-window-or-workspace-down; }
+    Mod+K { focus-window-or-workspace-up; }
+
+    // ── Move windows ──────────────────────────────
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+L { move-column-right; }
+    Mod+Shift+J { move-window-down-or-to-workspace-down; }
+    Mod+Shift+K { move-window-up-or-to-workspace-up; }
+
+    // ── Resize windows ────────────────────────────
+    Mod+Ctrl+H { set-column-width "-10%"; }
+    Mod+Ctrl+L { set-column-width "+10%"; }
+    Mod+Ctrl+J { set-window-height "+10%"; }
+    Mod+Ctrl+K { set-window-height "-10%"; }
+
+    // ── Workspaces ────────────────────────────────
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    Mod+0 { focus-workspace 10; }
+
+    // ── Move to workspace ─────────────────────────
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+Shift+0 { move-column-to-workspace 10; }
+
+    // ── Scroll through workspaces / columns ───────
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollRight { focus-column-right; }
+    Mod+WheelScrollLeft  { focus-column-left; }
+
+    // ── Media / Brightness ────────────────────────
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "pamixer" "-i" "5"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "pamixer" "-d" "5"; }
+    XF86AudioMute        allow-when-locked=true { spawn "pamixer" "-t"; }
+    XF86AudioPlay        allow-when-locked=true { spawn "playerctl" "play-pause"; }
+    XF86AudioNext        allow-when-locked=true { spawn "playerctl" "next"; }
+    XF86AudioPrev        allow-when-locked=true { spawn "playerctl" "previous"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "set" "+5%"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-"; }
+
+    // ── Screenshot ────────────────────────────────
+    // Saved to screenshot-path and copied to the clipboard
+    Print { screenshot; }
+    Mod+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    // Lets apps like VMs/remote desktops grab all keys; this bind always works
+    Mod+Shift+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+}

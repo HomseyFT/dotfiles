@@ -98,38 +98,51 @@ Running log of all keybinds/shortcuts configured across the dev environment.
 
 ---
 
-## Hyprland (Super = mainMod)
+## Niri (Super = Mod)
+
+`Super + Shift + /` shows all binds on screen. Config: `niri/.config/niri/config.kdl`.
 
 ### Apps
 | Bind | Action |
 |------|--------|
 | `Super + Return` | Open Kitty terminal |
-| `Super + D` | Open Wofi launcher |
-| `Super + E` | Open Ranger (in Kitty) |
+| `Super + D` | Open fuzzel launcher |
+| `Super + E` | Open yazi (in Kitty) |
 | `Super + B` | Open Firefox |
+| `Super + Shift + V` | Clipboard history (clipman + fuzzel) |
+| `Super + Escape` | Lock screen |
 
 ### Window Management
 | Bind | Action |
 |------|--------|
-| `Super + Q` | Kill active window |
-| `Super + Shift + Q` | Exit Hyprland |
-| `Super + F` | Fullscreen |
+| `Super + Q` | Close window |
+| `Super + Shift + Q` | Exit Niri |
+| `Super + F` | Maximize column (toggle full width) |
+| `Super + Shift + F` | Fullscreen |
 | `Super + V` | Toggle floating |
-| `Super + P` | Pseudo-tile |
-| `Super + S` | Toggle split |
+| `Super + Alt + V` | Switch focus between floating / tiled |
+| `Super + R` / `Super + Shift + R` | Cycle column width (1/3, 1/2, 2/3, full) |
+| `Super + S` | Toggle tabbed column |
+| `Super + [` / `]` | Pull window into / push out of column |
+| `Super + C` | Center column |
+| `Super + O` | Overview |
+| `Super + Shift + Escape` | Toggle shortcut inhibit (for VMs / remote desktop) |
 
 ### Focus (vim-style)
 | Bind | Action |
 |------|--------|
-| `Super + H/J/K/L` | Move focus left/down/up/right |
-| `Super + Shift + H/J/K/L` | Move window left/down/up/right |
-| `Super + Ctrl + H/J/K/L` | Resize window |
+| `Super + H/L` | Focus column left/right |
+| `Super + J/K` | Focus window down/up in column, then next/prev workspace |
+| `Super + Shift + H/L` | Move column left/right |
+| `Super + Shift + J/K` | Move window down/up, then to next/prev workspace |
+| `Super + Ctrl + H/L` | Column width -/+ 10% |
+| `Super + Ctrl + J/K` | Window height +/- 10% |
 
 ### Workspaces
 | Bind | Action |
 |------|--------|
 | `Super + 1-9, 0` | Switch to workspace 1-10 |
-| `Super + Shift + 1-9, 0` | Move window to workspace 1-10 |
+| `Super + Shift + 1-9, 0` | Move column to workspace 1-10 |
 | `Super + mouse scroll` | Scroll through workspaces |
 
 ### Mouse
@@ -147,10 +160,21 @@ Running log of all keybinds/shortcuts configured across the dev environment.
 | `XF86MonBrightness{Up,Down}` | Brightness |
 
 ### Screenshot
+Saved to `~/Pictures/Screenshots/` and copied to clipboard.
+
 | Bind | Action |
 |------|--------|
-| `Print` | Full screenshot |
-| `Super + Print` | Region screenshot (slurp) |
+| `Print` | Region screenshot (drag, then Space) |
+| `Super + Print` | Full screenshot |
+| `Alt + Print` | Window screenshot |
+
+### Idle (swayidle)
+| After | Action |
+|-------|--------|
+| 5 min | Lock |
+| 7 min | Screens off |
+| 15 min | Suspend (battery only) |
+| Lid close / sleep | Lock first |
 
 ---
 
@@ -168,7 +192,7 @@ Running log of all keybinds/shortcuts configured across the dev environment.
 |-------|------------|
 | `v` | `nvim` |
 | `lg` | `lazygit` |
-| `r` | `ranger` |
+| `r` | `yazi` |
 | `ls` | `eza --icons --group-directories-first` |
 | `ll` | `eza -la --icons --group-directories-first --git` |
 | `lt` | `eza -la --icons --tree --level=2` |

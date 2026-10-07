@@ -25,9 +25,9 @@ eval "$(starship init zsh)"
 source <(fzf --zsh)
 export FZF_DEFAULT_OPTS='
   --height 40% --layout reverse --border rounded
-  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8
-  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc
-  --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8
+  --color=bg+:#2D4F67,bg:#1F1F28,spinner:#FFA066,hl:#E6C384
+  --color=fg:#DCD7BA,header:#7E9CD8,info:#957FB8,pointer:#E46876
+  --color=marker:#98BB6C,fg+:#DCD7BA,prompt:#7E9CD8,hl+:#E6C384
 '
 # Use fd for fzf file search
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
@@ -52,7 +52,7 @@ alias help='tldr'
 # ── Aliases: Shortcuts ────────────────────────────
 alias v='nvim'
 alias lg='lazygit'
-alias r='ranger'
+alias r='yazi'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

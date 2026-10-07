@@ -1,0 +1,5 @@
+# Lock at 5 min, screens off at 7, suspend at 15 (battery only)
+timeout 300 'swaylock -f'
+timeout 420 'niri msg action power-off-monitors'
+timeout 900 '[ "$(cat /sys/class/power_supply/AC/online)" = 0 ] && systemctl suspend'
+before-sleep 'swaylock -f'

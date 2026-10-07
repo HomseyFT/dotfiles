@@ -5,8 +5,11 @@
 set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-STOW_PACKAGES=(zsh kitty tmux nvim git fastfetch btop docs)
-COPRS=(atim/lazygit)
+STOW_PACKAGES=(
+  niri waybar fuzzel mako swaylock swayidle wallpaper
+  zsh kitty tmux nvim git fastfetch btop lazygit yazi docs
+)
+COPRS=(atim/lazygit lihaohong/yazi)
 
 install_packages() {
   for copr in "${COPRS[@]}"; do
@@ -44,6 +47,8 @@ install_extras() {
     rm -rf "$tmp"
     fc-cache -f
   fi
+
+  gsettings set org.gnome.desktop.interface color-scheme prefer-dark
 
   if [[ "$(getent passwd "$USER" | cut -d: -f7)" != "$(command -v zsh)" ]]; then
     chsh -s "$(command -v zsh)"

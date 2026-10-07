@@ -1,0 +1,95 @@
+/* ── Kanagawa Wave Palette ────────────────────── */
+@define-color bg         #1F1F28;
+@define-color crust      #16161D;
+@define-color surface0   #2A2A37;
+@define-color surface1   #363646;
+@define-color overlay    #727169;
+@define-color fg         #DCD7BA;
+@define-color blue       #7E9CD8;
+@define-color springblue #7FB4CA;
+@define-color aqua       #7AA89F;
+@define-color green      #98BB6C;
+@define-color yellow     #E6C384;
+@define-color orange     #FFA066;
+@define-color red        #E46876;
+@define-color violet     #957FB8;
+
+/* ── Global ──────────────────────────────────── */
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: @bg;
+    border-radius: 12px;
+    border: 1px solid @surface0;
+    color: @fg;
+}
+
+tooltip {
+    background: @crust;
+    border: 1px solid @surface0;
+    border-radius: 8px;
+    color: @fg;
+}
+
+/* ── Module defaults ─────────────────────────── */
+#workspaces,
+#clock,
+#cpu,
+#memory,
+#pulseaudio,
+#network,
+#battery,
+#tray {
+    padding: 0 12px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    background: @surface0;
+}
+
+/* ── Workspaces ──────────────────────────────── */
+#workspaces button {
+    padding: 0 6px;
+    color: @overlay;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+}
+
+#workspaces button.active {
+    color: @bg;
+    background: @blue;
+}
+
+#workspaces button:hover {
+    background: @surface1;
+    color: @fg;
+}
+
+/* ── Clock ───────────────────────────────────── */
+#clock {
+    color: @blue;
+    font-weight: bold;
+}
+
+/* ── System modules ──────────────────────────── */
+#cpu { color: @aqua; }
+#memory { color: @green; }
+
+#pulseaudio { color: @violet; }
+#pulseaudio.muted { color: @overlay; }
+
+#network { color: @springblue; }
+#network.disconnected { color: @overlay; }
+
+#battery { color: @orange; }
+#battery.charging { color: @green; }
+#battery.warning:not(.charging) { color: @yellow; }
+#battery.critical:not(.charging) { color: @red; }
+
+#tray {
+    background: transparent;
+}
