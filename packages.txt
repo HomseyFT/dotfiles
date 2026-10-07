@@ -1,0 +1,32 @@
+# dnf packages installed by install.sh (one per line, # for comments)
+
+# Shell + terminal
+zsh
+kitty
+tmux
+
+# Editor + git
+neovim
+git
+git-delta
+lazygit
+
+# CLI tools
+ripgrep
+fd-find
+fzf
+bat
+eza
+zoxide
+btop
+tealdeer
+du-dust
+procs
+fastfetch
+wl-clipboard
+
+# Needed by install.sh itself
+stow
+curl
+unzip
+fontconfig

@@ -1,0 +1,15 @@
+[core]
+	pager = delta
+	hooksPath = ~/.git-hooks
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	dark = true
+	line-numbers = true
+	side-by-side = false
+[merge]
+	conflictstyle = zdiff3
+[user]
+	email = thaddastrophysics@gmail.com
+	name = Nathan Filc-Helmuth

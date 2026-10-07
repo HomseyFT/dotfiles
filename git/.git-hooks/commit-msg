@@ -1,0 +1,2 @@
+#!/bin/sh
+sed -i '/^Co-Authored-By: Oz <oz-agent@warp.dev>$/d' "$1"
